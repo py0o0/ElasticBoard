@@ -20,9 +20,7 @@ spring:
     elasticsearch:
       client:
         elasticsearch:
-          uris: http://localhost:9200
-  #elasticsearch:
-    #uris: ${ES_URL}
+          uris: ${ES_URL}
 
   jpa:
     hibernate:
