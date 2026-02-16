@@ -1,0 +1,64 @@
+plugins {
+    id 'java'
+    //id 'org.springframework.boot' version '4.0.2'
+    id 'org.springframework.boot' version '3.2.5'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+description = 'EScommunity'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    compileOnly 'org.projectlombok:lombok'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    runtimeOnly 'com.mysql:mysql-connector-j'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-data-jpa-test'
+    testImplementation 'org.springframework.boot:spring-boot-starter-security-test'
+    testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    implementation 'io.jsonwebtoken:jjwt-api:0.12.3'
+    runtimeOnly   'io.jsonwebtoken:jjwt-impl:0.12.3'
+    runtimeOnly   'io.jsonwebtoken:jjwt-jackson:0.12.3'
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+
+    implementation platform('software.amazon.awssdk:bom:2.20.147') // AWS SDK BOM
+    implementation 'software.amazon.awssdk:s3' // S3 클라이언트
+    implementation 'org.springframework.boot:spring-boot-starter-validation' // 파일 유효성 검증에 사용
+    implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
+
+    // Elasticsearch
+    implementation 'org.springframework.boot:spring-boot-starter-data-elasticsearch'
+
+    /*// 추가했음 문제있음 지우삼
+    implementation 'org.springframework.data:spring-data-elasticsearch:6.0.2'
+    implementation 'org.elasticsearch.client:elasticsearch-rest-client:8.11.1'
+    implementation 'co.elastic.clients:elasticsearch-java:9.2.3'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.2'*/
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
